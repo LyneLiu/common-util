@@ -16,4 +16,5 @@ Java Conclusion：
 
 	spring demo；
 	mybatis demo；
+        avro rpc demo；
 	......
