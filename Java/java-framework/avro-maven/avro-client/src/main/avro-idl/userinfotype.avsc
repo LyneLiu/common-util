@@ -1,0 +1,8 @@
+{"type":"record", "name":"UserInfoType", "namespace": "org.lyne.idl.protocol",
+  "fields": [
+         {"name": "id",   "type": "int"},
+         {"name": "name", "type": "string"},
+         {"name": "age", "type": "int"},
+         {"name": "addr", "type": {"type": "array", "items": "Address"}}
+     ]
+}

@@ -1,0 +1,6 @@
+{"type":"record", "name":"Coache", "namespace": "avro.examples.baseball",
+  "fields": [
+   {"name": "name", "type": "Name"}
+
+  ]
+}

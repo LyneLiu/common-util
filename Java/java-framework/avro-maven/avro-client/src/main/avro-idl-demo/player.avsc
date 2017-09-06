@@ -1,0 +1,8 @@
+{"type":"record", "name":"Player", "namespace": "avro.examples.baseball",
+  "fields": [
+   {"name": "number", "type": "int"},
+   {"name": "name", "type": "Name"},
+   {"name": "positions", "type": {"type": "array", "items": "Position"} },
+   {"name": "coaches", "type": {"type": "array", "items": "Coache"} }
+  ]
+}

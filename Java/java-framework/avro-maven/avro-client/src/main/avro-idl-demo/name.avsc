@@ -1,0 +1,6 @@
+{"type":"record", "name":"Name", "namespace": "avro.examples.baseball",
+  "fields": [
+   {"name": "first_name", "type": "string"},
+   {"name": "last_name", "type": "string"}
+  ]
+}

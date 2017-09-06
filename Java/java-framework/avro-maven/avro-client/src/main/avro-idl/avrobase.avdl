@@ -1,0 +1,12 @@
+@namespace("org.lyne.idl.protocol")
+protocol PrdInfo {
+    import schema "address.avsc";
+    import schema "prdidentity.avsc";
+    import schema "prdinfotype.avsc";
+    import schema "useridentity.avsc";
+    import schema "userinfotype.avsc";
+
+    PrdInfoType queryPrdInfo(PrdIdentity prdIdentity);
+    UserInfoType queryUserInfo(UserIdentity userIdentity);
+
+}

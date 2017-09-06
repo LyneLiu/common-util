@@ -1,0 +1,6 @@
+{"type":"record", "name":"PrdIdentity", "namespace": "org.lyne.idl.protocol",
+     "fields": [
+         {"name": "id",   "type": "int"},
+         {"name": "type", "type": "string"}
+     ]
+}

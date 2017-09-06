@@ -1,0 +1,56 @@
+{
+ "namespace": "com.lyne.proto",
+ "protocol": "PrdInfo",
+
+ "types": [
+     {"name": "PrdIdentity", "type": "record",
+      "fields": [
+          {"name": "id",   "type": "int"},
+          {"name": "type", "type": "string"}
+      ]
+     },
+     {"name": "PrdInfoType", "type": "record",
+      "fields": [
+          {"name": "id",   "type": "int"},
+          {"name": "type", "type": "string"},
+          {"name": "price", "type": "double"}
+      ]
+     },
+     {"name": "UserIdentity", "type": "record",
+      "fields": [
+           {"name": "id",   "type": "int"}
+       ]
+      },
+      {"name": "UserInfoType", "type": "record",
+       "fields": [
+           {"name": "id",   "type": "int"},
+           {"name": "name", "type": "string"},
+           {"name": "age", "type": "int"},
+           {"name": "addr", "type": [
+                 {
+                    "type": "array",
+                    "items": {
+                    "name": "Address",
+                    "type": "record",
+                    "fields": [
+                       {"name": "city",   "type": "string"}
+                     ]
+                    }
+                 },
+                 "null"
+           ]}
+       ]
+      }
+ ],
+
+ "messages": {
+     "queryPrdInfo": {
+         "request": [{"name": "prdIdentity", "type": "PrdIdentity"}],
+         "response": "PrdInfoType"
+     },
+     "queryUserInfo":{
+         "request": [{"name": "userIdentity", "type": "UserIdentity"}],
+         "response": "UserInfoType"
+     }
+ }
+}

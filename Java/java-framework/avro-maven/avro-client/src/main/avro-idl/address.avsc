@@ -1,0 +1,5 @@
+{"type":"record", "name":"Address", "namespace": "org.lyne.idl.protocol",
+  "fields": [
+     {"name": "city",   "type": "string"}
+   ]
+}
