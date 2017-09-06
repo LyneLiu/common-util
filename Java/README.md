@@ -7,3 +7,7 @@ Java Conclusion：
 	JDBC；
 	Thread；
 	......
+
+2、java-vm
+
+	Java虚拟机相关内容；
