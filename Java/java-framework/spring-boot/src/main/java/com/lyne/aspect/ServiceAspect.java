@@ -40,7 +40,9 @@ public class ServiceAspect {
         try {
             this.validator(point.getArgs());
 
-            return point.proceed();
+            point.proceed();
+            logger.info("complete executing request aspect!");
+            return null;
         } catch (Throwable e) {
 
             return null;

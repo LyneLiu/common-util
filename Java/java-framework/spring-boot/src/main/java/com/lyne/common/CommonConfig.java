@@ -59,7 +59,7 @@ public class CommonConfig {
         FilterRegistrationBean registrationBean=new FilterRegistrationBean();
         registrationBean.setFilter(demoFilter);
         List<String> urlPatterns=new ArrayList<>();
-        urlPatterns.add("/*");//拦截路径，可以添加多个
+        urlPatterns.add("/custome/*");//拦截路径，可以添加多个
         registrationBean.setUrlPatterns(urlPatterns);
         registrationBean.setOrder(1);
         return registrationBean;
