@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,17 +14,18 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Order(2)
 public class ServeiceLog {
 
     private Logger logger = LoggerFactory.getLogger(ServeiceLog.class);
 
     @Around("execution(public * com.lyne.service.*.*(..))")
     public Object aspect(ProceedingJoinPoint point) throws Throwable {
-        logger.info("executing another request aspect!");
+        logger.info("executing another request around aspect!");
         try {
 
-            point.proceed();
-            logger.info("complete executing another request aspect!");
+            Object result = point.proceed();
+            logger.info("complete executing another request around aspect!" + result);
 
             return null;
         } catch (Throwable e) {

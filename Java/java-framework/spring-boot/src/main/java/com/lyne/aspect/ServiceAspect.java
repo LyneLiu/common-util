@@ -12,6 +12,7 @@ import org.hibernate.validator.HibernateValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolation;
@@ -22,11 +23,14 @@ import java.util.Set;
 
 /**
  * 参考Hibernate-Validation
+ * 通过@Order注解设置Aspect的优先级，可以制定一个int型的value属性，该属性值越小，则优先级越高.
+ *
  * Created by nn_liu on 2017/6/26.
  */
 
 @Aspect
 @Component
+@Order(1)
 public class ServiceAspect {
 
     @Autowired
@@ -36,13 +40,12 @@ public class ServiceAspect {
 
     @Around("execution(public * com.lyne.service.*.*(..))")
     public Object aspect(ProceedingJoinPoint point) throws Throwable {
-        logger.info("============================================");
-        logger.info("executing request aspect!");
+        logger.info("executing request around aspect!");
         try {
             this.validator(point.getArgs());
 
-            point.proceed();
-            logger.info("complete executing request aspect!");
+            Object result = point.proceed();
+            logger.info("complete executing request around aspect!" + result);
             return null;
         } catch (Throwable e) {
 
@@ -53,7 +56,7 @@ public class ServiceAspect {
 
     @Before("execution(public * com.lyne.controller.*.*(..))")
     public void metric(JoinPoint point) throws Throwable {
-        logger.info("executing request aspect!");
+        logger.info("executing request before aspect!");
         try {
             /*https://my.oschina.net/itblog/blog/211693*/
             bizMetric.metricCount(point.getSignature().getDeclaringTypeName() +

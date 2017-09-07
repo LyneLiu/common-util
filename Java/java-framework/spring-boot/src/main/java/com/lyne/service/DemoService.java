@@ -43,7 +43,7 @@ public class DemoService {
     }
 
 
-    public void guavaMapDemo(List<PrdBean> prdBeans) {
+    public String guavaMapDemo(List<PrdBean> prdBeans) {
         /* guava map处理 */
         ImmutableMultimap<String, PrdBean> opsMap = Multimaps.index(prdBeans, indexPrdBean());
 
@@ -63,6 +63,7 @@ public class DemoService {
         System.out.println(opsMap.get("shanghai").asList().size());
         System.out.println(opsMap.get("test").isEmpty());
 
+        return "Msg for Aspect";
     }
 
     public void handle(PrdBean prdBean){
