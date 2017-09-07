@@ -36,6 +36,7 @@ public class ServiceAspect {
 
     @Around("execution(public * com.lyne.service.*.*(..))")
     public Object aspect(ProceedingJoinPoint point) throws Throwable {
+        logger.info("============================================");
         logger.info("executing request aspect!");
         try {
             this.validator(point.getArgs());

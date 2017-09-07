@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServeiceLog {
 
-    private Logger logger = LoggerFactory.getLogger(ServiceAspect.class);
+    private Logger logger = LoggerFactory.getLogger(ServeiceLog.class);
 
     @Around("execution(public * com.lyne.service.*.*(..))")
     public Object aspect(ProceedingJoinPoint point) throws Throwable {
