@@ -7,9 +7,9 @@
 
 - Class文件格式概述
 
-   class文件：8位字节的二进制流文件。每个类（或者接口）都单独占据一个class文件。
+    	class文件：8位字节的二进制流文件。每个类（或者接口）都单独占据一个class文件。
 
-   	class文件中数据信息为一项一项排列的，每项数据都有它的固定长度，可以占用一个字节、两个字节、四个字节或者8个字节，不同长度分别用u1、u2、u4、u8表示。可以把u1、u2、u4、u8看作class文件数据项的“类型”。
+   		class文件中数据信息为一项一项排列的，每项数据都有它的固定长度，可以占用一个字节、两个字节、四个字节或者8个字节，不同长度分别用u1、u2、u4、u8表示。可以把u1、u2、u4、u8看作class文件数据项的“类型”。
 
 
 | 类型	        | 名称			|数量
@@ -53,7 +53,62 @@
 |CONSTANT_InterfaceMethodref	|11	|对一个接口中声明的方法的符号引用
 |CONSTANT_NameAndType	|12	|对一个字段或方法的部分符号引用
 
-参考链接：
 
+##  Part 2 特殊字符串 ##
+
+
+
+- 特殊字符串是指常量池中的符号引用的数据项，见Part 1。特殊字符串包含三种：类的全限定名，字段和方法的描述符，特殊方法的方法名。
+
+#### 1. 类的全限定名 ####
+
+源文件中的全限定名和class文件中的全限定名不是相同的概念。源文件中的全限定名是包名+类名，包名的各个部分之间，包名和类名之间，使用点号（.）分割，如Object类对应的源文件的全限定名为**<span style="color:red">java.lang.Object</span>**。编译后的class文件中对应的全限定名将点号替换为“/”，即java.lang.Object在class文件中的全限定名为**<span style="color:red">java/lang/Object</span>**.
+
+#### 2. 字段和方法的描述符 ####
+
+
+class文件中字段和方法的描述符并不会把方法和字段的所有信息全部描述出来（描述符只是一个简单的字符串）。所有的类型在描述符中都有对应的字符或者字符串。
+
+
+
+- **<span style="color:blue">基本类型</span>**
+
+
+|基本数据类型和void类型	|类型的对应字符
+|:-------------:|:-------------:|
+|byte	|B
+|char	|C
+|double	|D
+|float	|F
+|int	|I
+|long	|J
+|short	|S
+|boolean	|Z
+|void	|V
+
+	说明：基本上都是以类型的首字符变成大写来对应的，其中long和boolean是特例，long类型在描述符中对应的字符是J，boolean类型在描述符中对应的字符是Z。
+
+- **<span style="color:blue">引用类型</span>**
+
+
+引用类型在描述符中如何对应呢？引用类型在描述符中是使用一个字符串来表示的。字符串的固定格式：
+
+**<span style="color:red">“L”+类型的全限定名+“;”</span>**
+
+如Object在描述符中对应的字符串是：*Ljava/lang/Object;* ，自定义类型com.example.Person在描述符中的对应字符串是：*Lcom/example/Person;* 。
+
+- **<span style="color:blue">数组类型</span>**
+
+java语言中，数组的元素类型和维度决定了它的类型。如，int[] a声明中，变量a的类型为int[]；在Object[] c声明中，变量c的类型为Object[]。class文件的描述符中，数组类型的每个维度通过“[”表示，数组类型整个类型对应的字符串的固定格式为：
+
+**<span style="color:red">若干个“[”  +  数组中元素类型的对应字符串</span>**
+
+如int[]类型对应的是字符串为：*[I* ，int[][]类型对应的字符串为：*[[I* ，Object[]类型对应的字符串为: *[Ljava/lang/Object;* , Object[][]类型对应的字符串为：*[[Ljava/lang/Object;* 。
+
+#### 3. 特殊方法的方法名 ####
+
+
+
+参考链接：
 
 	http://blog.csdn.net/zhangjg_blog/article/details/21486985
