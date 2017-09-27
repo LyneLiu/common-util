@@ -107,7 +107,14 @@ java语言中，数组的元素类型和维度决定了它的类型。如，int[
 
 #### 3. 特殊方法的方法名 ####
 
+这里的特殊方法指类的构造方法和类型初始化方法（即静态初始化块，也就是说静态初始化块，在class文件中是以一个方法表达的，这个方法同样有方法描述和方法名）。
 
+类的构造方法的方法名使用字符串<init>表示，而静态初始化方法的方法名使用字符串<clinit>表示。除了这两种特殊的方法外，其他普通方法的方法名，和源文件中的方法名相同。
+
+
+##  Part 3 常量池中格数据类型详解 ##
+
+由Part 1可知，常量池中存在11种数据类型。其中两种比较基础的类型，即**<span style="color:red">CONSTANT_Utf8</span>**和**<span style="color:red">CONSTANT_NameAndType</span>**，这两种类型的数据项会被其他类型的数据项引用，并且CONSTANT_NameAndType类型的数据项（CONSTANT_NameAndType_info）也会引用CONSTANT_Utf8类型的数据项（CONSTANT_Utf8_info）
 
 参考链接：
 
