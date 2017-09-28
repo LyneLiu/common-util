@@ -114,7 +114,94 @@ java语言中，数组的元素类型和维度决定了它的类型。如，int[
 
 ##  Part 3 常量池中格数据类型详解 ##
 
-由Part 1可知，常量池中存在11种数据类型。其中两种比较基础的类型，即**<span style="color:red">CONSTANT_Utf8</span>**和**<span style="color:red">CONSTANT_NameAndType</span>**，这两种类型的数据项会被其他类型的数据项引用，并且CONSTANT_NameAndType类型的数据项（CONSTANT_NameAndType_info）也会引用CONSTANT_Utf8类型的数据项（CONSTANT_Utf8_info）
+由Part 1可知，常量池中存在11种数据类型。其中两种比较基础的类型，即**<span style="color:red">CONSTANT_Utf8</span>**和**<span style="color:red">CONSTANT_NameAndType</span>**，这两种类型的数据项会被其他类型的数据项引用，并且CONSTANT_NameAndType类型的数据项（CONSTANT_NameAndType_info）也会引用CONSTANT_Utf8类型的数据项（CONSTANT_Utf8_info）。
+
+#### 1. CONSTANT_Utf8_info ####
+
+一个CONSTANT_Utf8_info是一个CONSTANT_Utf8类型的常量池数据项， 存储的是一个常量字符串。CONSTANT_Utf8_info数据项的存储格式：一个整形的标志位（tag）标识当前数据项的数据类型，数据值是1，占用第一个字节；存储数据项长度的length，占用两个字节；剩下的字节存储数据的value，占用length字节。
+![](http://img.blog.csdn.net/20140320202350140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdqZ19ibG9n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+如果CONSTANT_Utf8_info存储的字符串是“Hello”，则实际的存储形式为：
+![](http://img.blog.csdn.net/20140320203137171?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdqZ19ibG9n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+CONSTANT_Utf8_info数据项存储的字符串主要包括：
+- 程序中的字符串常量
+- 常量池所在当前类（包括接口和枚举）的全限定名
+- 常量池所在当前类的直接父类的全限定名
+- 常量池所在当前类型所实现或继承的所有接口的全限定名
+- 常量池所在当前类型中所定义的字段的名称和描述符
+- 常量池所在当前类型中所定义的方法的名称和描述符
+- 由当前类所引用的类型的全限定名
+- 由当前类所引用的其他类中的字段的名称和描述符
+- 由当前类所引用的其他类中的方法的名称和描述符
+- 与当前class文件中的属性相关的字符串， 如属性名等
+
+通过一个简单的示例，了解一下class文件的CONSTANT_Utf8_info数据项信息，Java的源码文件为Person.java:
+	
+	package com.lyne.tools;
+
+	public class Person {
+	
+	    String name;
+	
+	    Integer age;
+	
+	    public String getName() {
+	        return name;
+	    }
+	
+	    public void setName(String name) {
+	        this.name = name;
+	    }
+	
+	    public Integer getAge() {
+	        return age;
+	    }
+	
+	    public void setAge(Integer age) {
+	        this.age = age;
+	    }
+	}
+
+通过javac Person.java编译源文件，然后通过javap -verbose Person.class可以获取到常量池数据：
+
+	   #1 = Methodref          #5.#24         // java/lang/Object."<init>":()V
+	   #2 = Fieldref           #4.#25         // com/lyne/tools/Person.name:Ljava/lang/String;
+	   #3 = Fieldref           #4.#26         // com/lyne/tools/Person.age:Ljava/lang/Integer;
+	   #4 = Class              #27            // com/lyne/tools/Person
+	   #5 = Class              #28            // java/lang/Object
+	   #6 = Utf8               name
+	   #7 = Utf8               Ljava/lang/String;
+	   #8 = Utf8               age
+	   #9 = Utf8               Ljava/lang/Integer;
+	  #10 = Utf8               <init>
+	  #11 = Utf8               ()V
+	  #12 = Utf8               Code
+	  #13 = Utf8               LineNumberTable
+	  #14 = Utf8               getName
+	  #15 = Utf8               ()Ljava/lang/String;
+	  #16 = Utf8               setName
+	  #17 = Utf8               (Ljava/lang/String;)V
+	  #18 = Utf8               getAge
+	  #19 = Utf8               ()Ljava/lang/Integer;
+	  #20 = Utf8               setAge
+	  #21 = Utf8               (Ljava/lang/Integer;)V
+	  #22 = Utf8               SourceFile
+	  #23 = Utf8               Person.java
+	  #27 = Utf8               com/lyne/tools/Person
+	  #28 = Utf8               java/lang/Object
+
+其中Utf8为CONSTANT_Utf8类型的数据项。
+
+#### 2. CONSTANT_NameAndType_info ####
+
+一个CONSTANT_NameAndType_info数据项描述了两部分信息，第一部分信息是名称（Name），第二部分信息是类型（Type）。如果Name部分是一个字段名称，Type字段就是相应字段的描述符；如果Name部分表示的是一个方法的名称，那么Type部分就是对应的方法的描述符。CONSTANT_NameAndType_info数据项的存储格式：第一个字节也是tag，值为12；指向常量池中一个CONSTANT_Utf8_info数据项的name_index，占用两个字节；指向常量池中一个CONSTANT_Utf8_info数据项的descriptor_index，占用两个字节。
+
+![](http://img.blog.csdn.net/20140320221730843?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdqZ19ibG9n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+ 	  #24 = NameAndType        #10:#11        // "<init>":()V
+	  #25 = NameAndType        #6:#7          // name:Ljava/lang/String;
+	  #26 = NameAndType        #8:#9          // age:Ljava/lang/Integer;
 
 参考链接：
 
