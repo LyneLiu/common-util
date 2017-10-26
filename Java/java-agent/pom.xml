@@ -5,7 +5,13 @@
   <groupId>com.lyne</groupId>
   <artifactId>java-agent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <modules>
+    <module>java-premain-agent</module>
+    <module>java-agentmain-agent</module>
+    <module>java-vm-agent</module>
+    <module>javaagent-common</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>java-agent</name>
   <url>http://maven.apache.org</url>
@@ -15,6 +21,26 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>asm</groupId>
+      <artifactId>asm-all</artifactId>
+      <version>3.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.5.8</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>0.9.9</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

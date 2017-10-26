@@ -1,4 +1,4 @@
-package com.lyne.agent;
+package com.lyne.common;
 
 import java.io.File;
 import java.lang.management.ManagementFactory;
@@ -50,7 +50,5 @@ public final class Tools {
         }
 
     }
-
-
 
 }

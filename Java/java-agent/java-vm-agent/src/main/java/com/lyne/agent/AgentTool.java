@@ -1,9 +1,6 @@
 package com.lyne.agent;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.security.CodeSource;
 

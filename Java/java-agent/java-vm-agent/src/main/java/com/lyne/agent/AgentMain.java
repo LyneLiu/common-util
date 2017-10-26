@@ -1,5 +1,8 @@
 package com.lyne.agent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.instrument.Instrumentation;
 
 /**
@@ -12,6 +15,7 @@ import java.lang.instrument.Instrumentation;
  *
  * 参考链接：
  * http://www.jianshu.com/p/ae6f28fff289
+ * http://fengfu.io/2016/04/24/Java-Instrumentation%E7%A0%94%E7%A9%B6-1/
  *
  * @author nn_liu
  * @Created 2017-10-24-17:15
@@ -19,8 +23,14 @@ import java.lang.instrument.Instrumentation;
 
 public class AgentMain {
 
+    static final Logger logger = LoggerFactory.getLogger(AgentMain.class);
+
+    private static Instrumentation instrumentation;
+
     public static void agentmain(String agentArgs, Instrumentation instrumentation){
-        System.out.println("###### Java agentmain method executed!");
+        logger.info("agentmain method invoked with args: {} and inst: {}", agentArgs, instrumentation);
+        instrumentation = instrumentation;
+        instrumentation.addTransformer(new ClassFileTransformer());
     }
 
     public static void premain(String agentArgs, Instrumentation instrumentation){
