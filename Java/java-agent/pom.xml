@@ -6,10 +6,10 @@
   <artifactId>java-agent</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
+    <module>java-agent-common</module>
     <module>java-premain-agent</module>
     <module>java-agentmain-agent</module>
     <module>java-vm-agent</module>
-    <module>javaagent-common</module>
   </modules>
   <packaging>pom</packaging>
 
