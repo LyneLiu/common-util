@@ -1,5 +1,7 @@
 package com.lyne.tools;
 
+import com.google.common.base.Strings;
+
 /**
  *  判断当前点是否在椭圆上
  * Created by nn_liu on 2017/6/9.
@@ -30,6 +32,8 @@ public class EllipseTool {
     public static void main(String[] args) {
         EllipseTool ellipseTool = new EllipseTool();
         System.out.println(ellipseTool.isInEllipse(20,20));
+
+        System.out.println("F".equalsIgnoreCase(null));
     }
 
 }

@@ -90,17 +90,14 @@ public class JDBCTemplateDemo {
 
     /*RowMapper接口：查询结果为List类型*/
     public int RowMapperFun() throws IOException {
-        List<Book> bookList = getJdbcTemplate().query("select * from book", new RowMapper<Book>() {
-            @Override
-            public Book mapRow(ResultSet resultSet, int i) throws SQLException {
-                Book book = new Book();
-                book.setUsername(resultSet.getString(2));
-                book.setIsbn(resultSet.getString(3));
-                book.setTitle(resultSet.getString(4));
-                book.setAuthor(resultSet.getString(5));
-                book.setDescription(resultSet.getString(6));
-                return book;
-            }
+        List<Book> bookList = getJdbcTemplate().query("select * from book", (resultSet, i) -> {
+            Book book = new Book();
+            book.setUsername(resultSet.getString(2));
+            book.setIsbn(resultSet.getString(3));
+            book.setTitle(resultSet.getString(4));
+            book.setAuthor(resultSet.getString(5));
+            book.setDescription(resultSet.getString(6));
+            return book;
         });
         return bookList.size();
     }
