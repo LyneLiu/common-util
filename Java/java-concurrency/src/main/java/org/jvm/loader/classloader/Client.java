@@ -12,8 +12,6 @@ import java.net.URISyntaxException;
 public class Client {
     public static void main(String[] args) throws URISyntaxException {
 
-        AgentTool.loadAgent();
-
         //MyClassLoader的父类加载器为系统默认的加载器AppClassLoader
         MyClassLoader myCLoader = new MyClassLoader("MyClassLoader");
         //指定MyClassLoader的父类加载器为ExtClassLoader
