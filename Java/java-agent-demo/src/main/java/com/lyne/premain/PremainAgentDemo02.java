@@ -4,6 +4,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
+ * 添加VM启动参数：
+ * -javaagent:system\path\java-premain-agent-1.0-SNAPSHOT.jar
+ *
  * @author nn_liu
  * @Created 2017-11-03-9:39
  */
