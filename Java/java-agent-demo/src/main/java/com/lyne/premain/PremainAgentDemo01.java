@@ -1,4 +1,4 @@
-package com.lyne;
+package com.lyne.premain;
 
 /**
  * 添加VM启动参数：
@@ -7,7 +7,7 @@ package com.lyne;
  * @Created 2017-11-02-19:02
  */
 
-public class PremainAgentDemo {
+public class PremainAgentDemo01 {
 
     public static void main(String[] args) {
 
