@@ -1,6 +1,7 @@
 package com.lyne.premain;
 
 import com.lyne.premain.instrument.SimpleClassTransformer;
+import com.lyne.premain.instrument.StatisticsClassTransformer;
 
 import java.lang.instrument.Instrumentation;
 
@@ -22,6 +23,16 @@ public class PremainAgent {
      */
     public static void premain(String agentArgs, Instrumentation instrumentation){
         System.out.println(">>>>>> Java premain method executed!");
-        instrumentation.addTransformer(new SimpleClassTransformer());
+        init(instrumentation);
     }
+
+    /**
+     * 自定义Instrument
+     * @param instrumentation
+     */
+    private static void init(Instrumentation instrumentation){
+        instrumentation.addTransformer(new SimpleClassTransformer());
+        instrumentation.addTransformer(new StatisticsClassTransformer());
+    }
+
 }
