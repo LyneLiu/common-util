@@ -1,7 +1,7 @@
 package com.lyne.premain;
 
-import com.lyne.premain.instrument.SimpleClassTransformer;
-import com.lyne.premain.instrument.StatisticsClassTransformer;
+import com.lyne.common.instrument.SimpleClassTransformer;
+import com.lyne.common.instrument.StatisticsClassTransformer;
 
 import java.lang.instrument.Instrumentation;
 

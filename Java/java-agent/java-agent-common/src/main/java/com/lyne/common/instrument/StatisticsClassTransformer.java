@@ -1,4 +1,4 @@
-package com.lyne.premain.instrument;
+package com.lyne.common.instrument;
 
 
 import org.objectweb.asm.ClassReader;
@@ -8,7 +8,6 @@ import org.objectweb.asm.tree.MethodNode;
 import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
-import java.lang.reflect.Modifier;
 import java.security.ProtectionDomain;
 import java.util.List;
 
@@ -17,6 +16,14 @@ import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
 /**
+ * Java字节码框架ASM
+ * 1、ClassReader: 负责读取字节码；
+ * 2、CalssVisitor：通过visitor模式访问字节码。
+ *
+ * http://simpleframework.net/news/view?newsId=f21f7c437a034a358d44e86d4ddce3ab
+ * http://www.acyouzi.com/2016/12/09/java-asm/
+ * https://my.oschina.net/u/1166271/blog/220011
+ *
  * @author nn_liu
  * @Created 2017-11-03-9:41
  */

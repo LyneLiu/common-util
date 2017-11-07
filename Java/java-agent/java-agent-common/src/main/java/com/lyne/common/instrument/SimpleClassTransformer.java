@@ -1,4 +1,4 @@
-package com.lyne.premain.instrument;
+package com.lyne.common.instrument;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
