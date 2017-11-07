@@ -1,4 +1,4 @@
-package org.jvm.loader.serviceloader;
+package com.lyne.classloader.serviceloader;
 
 import java.util.ServiceLoader;
 
