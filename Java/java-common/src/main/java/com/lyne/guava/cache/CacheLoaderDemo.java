@@ -5,6 +5,8 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * CacheLoader的方式适用于通过默认的方法来记载或计算与键关联的值
  * <p>
@@ -15,19 +17,25 @@ import lombok.extern.slf4j.Slf4j;
  * @Created 2017-11-09-10:38
  */
 
-@Slf4j
-public class CacheLoaderDemo {
+@Slf4j public class CacheLoaderDemo {
 
+    /**
+     * 当Guava Cache中没有key时，将通过load方法加载数据，并将其保存至Cache中。
+     * Note：load方法不能返回null。
+     * @throws Exception
+     */
     public void testLoadingCache() throws Exception {
         LoadingCache<String, String> cahceBuilder =
-                CacheBuilder.newBuilder().build(new CacheLoader<String, String>() {
-                    @Override public String load(String key) throws Exception {
-                        String strProValue = "hello " + key + "!";
-                        log.debug("loading key..." + key + ":" + strProValue);
-                        return strProValue;
-                    }
+                CacheBuilder.newBuilder().expireAfterAccess(10, TimeUnit.SECONDS)
+                        .build(new CacheLoader<String, String>() {
+                            @Override
+                            public String load(String key) throws Exception {
+                                String strProValue = "hello " + key + "!";
+                                log.debug("loading key..." + key + ":" + strProValue);
+                                return strProValue;
+                            }
 
-                });
+                        });
 
         System.out.println("jerry value:" + cahceBuilder.getUnchecked("jerry"));
         System.out.println("jerry value:" + cahceBuilder.get("jerry"));
