@@ -10,7 +10,7 @@
         ${Hatake}
         Zoro
     -->
-    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:context-*.properties"/>-->
+    <!--<context:property-placeholder location="classpath:context-*.properties"/>-->
 
     <!--
         2、当使用classpath*方式扫描配置文件时，不仅会扫描当前模块的resources文件，同时也会扫描依赖模块的resources文件。输出结果：
@@ -19,7 +19,31 @@
 
         Note: 通过这种方式配置的place holder不需要添加ignore-unresolvable="true"属性
     -->
-    <context:property-placeholder location="classpath*:context-*.properties"/>
+    <!--<context:property-placeholder location="classpath*:context-*.properties"/>-->
+
+    <!--
+        3、通过PropertyPlaceholderConfigurer加载配置文件：
+    -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--指定配置加载顺序-->
+        <property name="order" value="2" />
+        <!--是否忽略未匹配的占位符${...}-->
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">
+            <list>
+                <!--
+                    classpath:context-*.properties方式返回结果：
+                    ${Hatake}
+                    ${Rorona}
+                -->
+                <!--<value>classpath:context-*.properties</value>-->
+                <!--
+                    正确使用方式：classpath:context-*.properties
+                -->
+                <value>classpath:context-*.properties</value>
+            </list>
+        </property>
+    </bean>
 
     <bean id="naruto" class="com.lyne.BeanDemo">
         <constructor-arg name="name" value="${Hatake}"/>
