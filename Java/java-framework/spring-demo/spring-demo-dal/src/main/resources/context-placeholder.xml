@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+    <!--
+        1、ignore-unresolvable="true"时，place holder会保留当前的占位符，输出结果：
+        ${Hatake}
+        Zoro
+    -->
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath:context-*.properties"/>-->
+
+    <!--
+        2、当使用classpath*方式扫描配置文件时，不仅会扫描当前模块的resources文件，同时也会扫描依赖模块的resources文件。输出结果：
+        Kakashi
+        Zoro
+
+        Note: 通过这种方式配置的place holder不需要添加ignore-unresolvable="true"属性
+    -->
+    <context:property-placeholder location="classpath*:context-*.properties"/>
+
+    <bean id="naruto" class="com.lyne.BeanDemo">
+        <constructor-arg name="name" value="${Hatake}"/>
+    </bean>
+
+    <bean id="onepiece" class="com.lyne.BeanDemo">
+        <constructor-arg name="name" value="${Rorona}"/>
+    </bean>
+
+</beans>
