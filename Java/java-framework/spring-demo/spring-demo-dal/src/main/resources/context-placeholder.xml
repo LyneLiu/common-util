@@ -43,6 +43,7 @@
                 <value>classpath:context-*.properties</value>
             </list>
         </property>
+        <property name="fileEncoding" value="UTF-8"></property>
     </bean>
 
     <bean id="naruto" class="com.lyne.BeanDemo">
