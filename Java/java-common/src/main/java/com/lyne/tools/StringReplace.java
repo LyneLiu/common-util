@@ -4,6 +4,9 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableMap;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by nn_liu on 2016/10/24.
@@ -16,8 +19,48 @@ import java.io.*;
  * common-lange使用：StringUtils
  */
 public class StringReplace {
-    public static void main(String[] args) throws IOException {
 
+    public static void main(String[] args)  {
+
+        String str = "prd_test,prd_name,prd_user,\n"
+                + "\t        prd_tag,prd_ttd";
+
+        String tempStr = str.replaceAll("\\s*|\t|\r|\n", "");
+
+        String[] strArr = tempStr.split(",");
+
+        for (String strTemp : strArr) {
+            System.out.println(">>" + strTemp);
+        }
+
+    }
+
+
+    /**
+     * 通过replaceAll替换String空格、制表符、换行符，本质上还是调用Patter方式实现正则表达式的替换
+     * @param str
+     * @return
+     */
+    public static String replaceBlankWithReplaceAll(String str){
+        return str.replaceAll("\\s*|\t|\r|\n", "");
+    }
+
+    /**
+     * 通过Pattern替换String空格、制表符、换行符
+     * @param str
+     * @return
+     */
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str!=null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
+    }
+
+    private static void testFileEncoding() throws IOException {
         String encoding = "UTF-8"; // 字符编码(可解决中文乱码问题 )
         /*输入文件*/
         File inFile = new File("F:/bella/temp.txt");
@@ -46,7 +89,6 @@ public class StringReplace {
         } else {
             System.out.println("找不到指定的文件！");
         }
-
     }
 
     private static String tackleStr(String str){
