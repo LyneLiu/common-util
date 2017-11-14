@@ -1,4 +1,4 @@
-package com.lyne.agent;
+package com.lyne.common;
 
 import com.lyne.common.Tools;
 
@@ -15,7 +15,7 @@ public class AgentTool {
 
     static Class<?> vmProviderClass=null;
 
-    public static void loadAgent() {
+    public static void loadAgent(String agentName) {
         try {
             final String virtualMachineClassName = "com.sun.tools.attach.VirtualMachine";
             final String hotspotVMName = "sun.tools.attach.HotSpotVirtualMachine";
@@ -37,7 +37,8 @@ public class AgentTool {
                 loadAgentMethod = hotspotVMClass.getMethod("loadAgent", String.class);
                 detachMethod = vmClass.getMethod("detach");
             }
-            CodeSource src = AgentMain.class.getProtectionDomain().getCodeSource();
+
+            CodeSource src = Class.forName(agentName).getProtectionDomain().getCodeSource();
 
             String jarPath = Paths.get(src.getLocation().toURI()).toString();
             loadAgentMethod.invoke(VM, jarPath);
