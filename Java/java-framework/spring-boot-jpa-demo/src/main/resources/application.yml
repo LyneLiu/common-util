@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-boot-jpa-demo
+  datasource:
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatisdb
+    username: root
+    password: 1qaz2wsx
