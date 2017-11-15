@@ -1,11 +1,15 @@
 package com.lyne.common.utils;
 
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -849,6 +853,40 @@ public class DateUtil {
             }
         }
         return maxDate;
+    }
+
+    /**
+     * 获取begain和end时间区间的所有日期
+     * @param begin
+     * @param end
+     * @return
+     */
+    public static List<Date> getDuration(Date begin, Date end){
+        List<Date> lDate = Lists.newArrayList();
+        lDate.add(begin);
+        Calendar calBegin = Calendar.getInstance();
+        calBegin.setTime(begin);
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(end);
+        while (end.after(calBegin.getTime())) {
+            calBegin.add(Calendar.DAY_OF_MONTH, 1);
+            lDate.add(calBegin.getTime());
+        }
+        return lDate;
+    }
+
+    public static List<Date> getDurationDays(Date begin, Date end){
+        List<Date> durationDays = Lists.newArrayList();
+
+        LocalDate localBeginDate = Instant.ofEpochMilli(begin.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localEndDate = Instant.ofEpochMilli(end.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+
+        while (localEndDate.isAfter(localBeginDate)){
+            localBeginDate = localBeginDate.plusDays(1);
+            durationDays.add(Date.from(localBeginDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+        }
+
+        return durationDays;
     }
 
     public static void main(String[] args) {
