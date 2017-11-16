@@ -1,6 +1,10 @@
 package com.lyne.domain;
 
 /**
+ *
+ * http://zhuyuehua.iteye.com/blog/1717525
+ * https://my.oschina.net/linuxred/blog/38802
+ *
  * Created by nn_liu on 2016/8/17.
  */
 public class User {

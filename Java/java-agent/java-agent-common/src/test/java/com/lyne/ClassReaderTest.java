@@ -1,5 +1,6 @@
 package com.lyne;
 
+import com.lyne.common.visitor.MetricCostCache;
 import org.objectweb.asm.*;
 
 import java.io.IOException;
@@ -38,4 +39,5 @@ public class ClassReaderTest {
             }
         }
     }
+
 }

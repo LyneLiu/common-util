@@ -1,5 +1,6 @@
 package com.lyne.premain;
 
+import com.lyne.common.instrument.MetricClassTransformer;
 import com.lyne.common.instrument.SimpleClassTransformer;
 import com.lyne.common.instrument.StatisticsClassTransformer;
 
@@ -33,6 +34,7 @@ public class PremainAgent {
     private static void init(Instrumentation instrumentation){
         instrumentation.addTransformer(new SimpleClassTransformer());
         instrumentation.addTransformer(new StatisticsClassTransformer());
+        instrumentation.addTransformer(new MetricClassTransformer());
     }
 
 }

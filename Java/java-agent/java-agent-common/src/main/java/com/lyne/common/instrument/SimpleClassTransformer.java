@@ -5,6 +5,8 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 /**
+ * 打印当前加载class name信息
+ *
  * @author nn_liu
  * @Created 2017-11-02-18:57
  */

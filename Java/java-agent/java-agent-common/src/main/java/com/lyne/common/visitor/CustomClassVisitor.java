@@ -1,4 +1,4 @@
-package com.lyne.common;
+package com.lyne.common.visitor;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
@@ -12,9 +12,9 @@ import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
  * @Created 2017-11-13-18:04
  */
 
-public class TestClassVisitor extends ClassVisitor {
+public class CustomClassVisitor extends ClassVisitor {
 
-    public TestClassVisitor(ClassVisitor classVisitor) {
+    public CustomClassVisitor(ClassVisitor classVisitor) {
         super(Opcodes.ASM5,classVisitor);
     }
 
@@ -31,7 +31,7 @@ public class TestClassVisitor extends ClassVisitor {
 
         if ("newFunc".equals(name)){
             MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
-            return new TestMethodVisitor(mv);
+            return new CustomMethodVisitor(mv);
         }
 
         if (cv != null) {
@@ -43,9 +43,9 @@ public class TestClassVisitor extends ClassVisitor {
 
 }
 
-class TestMethodVisitor extends MethodVisitor {
+class CustomMethodVisitor extends MethodVisitor {
 
-    public TestMethodVisitor(MethodVisitor mv) {
+    public CustomMethodVisitor(MethodVisitor mv) {
         super(Opcodes.ASM5, mv);
     }
 

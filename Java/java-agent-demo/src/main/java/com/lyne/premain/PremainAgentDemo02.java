@@ -1,5 +1,7 @@
 package com.lyne.premain;
 
+import com.lyne.common.visitor.MetricCost;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -43,12 +45,14 @@ public class PremainAgentDemo02{
 
         // 通过代理获取Class静态数据
         BusinessClass object = new BusinessClass();
+        object.bizMethod1();
         System.out.println("Biz Object " + object);
     }
 }
 
 class BusinessClass {
 
+    @MetricCost
     public void bizMethod1(){
         System.out.println("Biz Method 1");
     }

@@ -1,6 +1,6 @@
 package com.lyne.common.instrument;
 
-import com.lyne.common.TestClassVisitor;
+import com.lyne.common.visitor.CustomClassVisitor;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -22,7 +22,7 @@ public class CustomClassTransformer implements ClassFileTransformer {
             throws IllegalClassFormatException {
         ClassReader cr = new ClassReader(classfileBuffer);
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
-        ClassVisitor cv = new TestClassVisitor(cw);
+        ClassVisitor cv = new CustomClassVisitor(cw);
 
         cr.accept(cv, Opcodes.ASM5);
 
