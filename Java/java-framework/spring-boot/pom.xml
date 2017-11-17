@@ -6,13 +6,7 @@
 	<groupId>com.lyne</groupId>
 	<artifactId>spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<modules>
-		<module>spring-boot-common</module>
-		<module>spring-boot-service</module>
-		<module>spring-boot-dal</module>
-		<module>spring-boot-web</module>
-	</modules>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
 	<name>spring-boot</name>
 	<description>Demo project for Spring Boot</description>
