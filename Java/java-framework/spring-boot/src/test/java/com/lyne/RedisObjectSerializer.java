@@ -6,10 +6,13 @@ import org.springframework.core.serializer.support.SerializingConverter;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 
+import java.util.Map;
+
 /**
  * Created by nn_liu on 2017/5/22.
  */
 public class RedisObjectSerializer implements RedisSerializer<Object> {
+
     private Converter<Object, byte[]> serializer = new SerializingConverter();
     private Converter<byte[], Object> deserializer = new DeserializingConverter();
 

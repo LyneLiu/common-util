@@ -9,6 +9,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Pipeline;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +27,11 @@ public class RedisTemplateTest implements Serializable {
     private RedisTemplate redisTemplate;
     @Test
     public void test() throws Exception {
+
+        Jedis redis = new Jedis("127.0.0.1", 6379, 400000);
+        Pipeline p = redis.pipelined();
+        p.get("test");
+
 
         City city = new City();
         city.setName("lyne");
