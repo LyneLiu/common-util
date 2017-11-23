@@ -1,4 +1,4 @@
-package com.lyne;
+package com.redis;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.serializer.support.DeserializingConverter;

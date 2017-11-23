@@ -1,4 +1,4 @@
-package com.lyne;
+package com.redis;
 
 import com.lyne.utils.SerializeUtil;
 import org.junit.Test;

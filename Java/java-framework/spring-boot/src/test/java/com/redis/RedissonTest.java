@@ -1,4 +1,4 @@
-package com.lyne;
+package com.redis;
 
 import org.junit.Before;
 import org.junit.Test;
