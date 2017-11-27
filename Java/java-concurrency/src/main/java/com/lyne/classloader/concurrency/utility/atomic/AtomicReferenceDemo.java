@@ -1,4 +1,4 @@
-package com.lyne.classloader.concurrency.utility;
+package com.lyne.classloader.concurrency.utility.atomic;
 
 import java.util.concurrent.atomic.AtomicReference;
 
