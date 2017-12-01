@@ -1,0 +1,3 @@
+KeeperException$UnimplementedException
+
+通常这是zookeeper客户端和服务端版本不一致造成的，client版本高。
