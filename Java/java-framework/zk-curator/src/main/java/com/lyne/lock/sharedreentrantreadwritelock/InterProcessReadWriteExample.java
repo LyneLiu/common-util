@@ -1,6 +1,7 @@
-package com.lyne.lock.sharedreentrantlock;
+package com.lyne.lock.sharedreentrantreadwritelock;
 
 import com.lyne.lock.FakeLimitedResource;
+import com.lyne.lock.sharedlock.ExampleClientSemaphoreLocks;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @Created 2017-12-01-9:55
  */
 @Slf4j
-public class InterProcessMutexExample {
+public class InterProcessReadWriteExample {
 
     private static final int QTY = 5;
     private static final int REPETITIONS = QTY * 2;
@@ -37,7 +38,7 @@ public class InterProcessMutexExample {
                         CuratorFramework client = CuratorFrameworkFactory.newClient(server.getConnectString(), new ExponentialBackoffRetry(1000, 3));
                         try {
                             client.start();
-                            final ExampleClientMutexLocks example = new ExampleClientMutexLocks(client, PATH, resource, "Client " + index);
+                            final ExampleClientReadWriteLocks example = new ExampleClientReadWriteLocks(client, PATH, resource, "Client " + index);
                             for (int j = 0; j < REPETITIONS; j++) {
                                 example.doWork(10, TimeUnit.SECONDS);
                             }
