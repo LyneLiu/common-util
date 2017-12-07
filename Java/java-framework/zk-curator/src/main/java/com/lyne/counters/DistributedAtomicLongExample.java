@@ -22,7 +22,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * DistributedAtomicLong乐观锁方式
+ * DistributedAtomicLong乐观锁方式：
+ * 1、get(): 获取当前值
+ * 2、increment()： 加一
+ * 3、decrement(): 减一
+ * 4、add()： 增加特定的值
+ * 5、subtract(): 减去特定的值
+ * 6、trySet(): 尝试设置计数值
+ * 7、forceSet(): 强制设置计数值
  *
  * @author nn_liu
  * @Created 2017-12-04-17:41
