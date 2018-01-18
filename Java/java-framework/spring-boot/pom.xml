@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<mockserver.version>5.2.3</mockserver.version>
 	</properties>
 
 	<dependencies>
@@ -119,6 +120,19 @@
 			<artifactId>jedis</artifactId>
 		</dependency>
 
+		<!-- mockserver -->
+		<dependency>
+			<groupId>${mockserver.version}</groupId>
+			<artifactId>mockserver-netty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${mockserver.version}</groupId>
+			<artifactId>mockserver-client-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${mockserver.version}</groupId>
+			<artifactId>mockserver-core</artifactId>
+		</dependency>
 
 	</dependencies>
 
