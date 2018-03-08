@@ -5,6 +5,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author nn_liu
  * @Created 2017-11-24-9:39
+ * 参考链接：http://www.importnew.com/15731.html
  */
 
 public class CountDownLatchDemo {
