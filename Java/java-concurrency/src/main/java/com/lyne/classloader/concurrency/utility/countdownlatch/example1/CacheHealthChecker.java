@@ -1,4 +1,4 @@
-package com.lyne.classloader.concurrency.utility.countdownlatch.example;
+package com.lyne.classloader.concurrency.utility.countdownlatch.example1;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -7,10 +7,10 @@ import java.util.concurrent.CountDownLatch;
  * @Created 2018-03-08-13:24
  */
 
-public class DatabaseHealthChecker extends BaseHealthChecker {
+public class CacheHealthChecker extends BaseHealthChecker {
 
-    public DatabaseHealthChecker (CountDownLatch latch)  {
-        super("Database Service", latch);
+    public CacheHealthChecker(CountDownLatch latch)  {
+        super("Cache Service", latch);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class DatabaseHealthChecker extends BaseHealthChecker {
         System.out.println("Checking " + this.getServiceName());
         try
         {
-            Thread.sleep(10000);
+            Thread.sleep(6000);
         }
         catch (InterruptedException e)
         {

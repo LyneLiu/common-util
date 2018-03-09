@@ -1,4 +1,4 @@
-package com.lyne.classloader.concurrency.utility.countdownlatch.example;
+package com.lyne.classloader.concurrency.utility.countdownlatch.example1;
 
 /**
  * @author nn_liu
