@@ -52,8 +52,13 @@ class Person implements Cloneable {
         this.age = age;
     }
 
-    @Override public Object clone() throws CloneNotSupportedException {
+    @Override
+    public Object clone() throws CloneNotSupportedException {
         return (Person) super.clone();
+    }
+
+    public Person clone(Object o){
+        return (Person) o;
     }
 
 }
