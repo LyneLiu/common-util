@@ -95,6 +95,8 @@ public class Demo01 {
                 // Note:
                 // synchronized同步方法（块）同一时刻只允许一个线程在里面,
                 // 所以notify执行后，aThread并没有立即执行
+                // synchronized锁住的是lock对象，所以注意lock对象的定义，也可以是Demo01.class,即为全局锁，
+                // class对象对于当前ClassLoader只有一份
                 synchronized (lock) {
                     System.out.println("Thread-B:1");
                     System.out.println("Thread-B:2");
@@ -169,7 +171,7 @@ public class Demo01 {
      */
     private static void printThreadWithCyclicBarrier(){
         int runner = 3;
-        final CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
+        final CyclicBarrier cyclicBarrier = new CyclicBarrier(runner);
 
         final Random random = new Random();
         for (char runnerName='A'; runnerName <= 'C'; runnerName++) {
