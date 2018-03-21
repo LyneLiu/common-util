@@ -171,7 +171,15 @@ public class Demo01 {
      */
     private static void printThreadWithCyclicBarrier(){
         int runner = 3;
-        final CyclicBarrier cyclicBarrier = new CyclicBarrier(runner);
+
+        Runnable mainThread = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("all threads begin running...");
+            }
+        };
+
+        final CyclicBarrier cyclicBarrier = new CyclicBarrier(runner, mainThread);
 
         final Random random = new Random();
         for (char runnerName='A'; runnerName <= 'C'; runnerName++) {
