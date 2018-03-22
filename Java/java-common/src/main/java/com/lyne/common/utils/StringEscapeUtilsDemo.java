@@ -4,7 +4,6 @@ package com.lyne.common.utils;
  * Created by nn_liu on 2016/12/14.
  */
 
-
 import org.apache.commons.lang.StringEscapeUtils;
 
 /**
