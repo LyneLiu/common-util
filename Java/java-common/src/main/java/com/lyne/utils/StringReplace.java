@@ -1,10 +1,9 @@
-package com.lyne.tools;
+package com.lyne.utils;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableMap;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
